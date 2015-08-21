@@ -11,15 +11,3 @@ cd /your/cloned/highlighting-kate
 make prep
 cabal install -fexecutable
 ```
-
-You also need build pandoc If you want to use If built syntax file in pandoc.
-
-```bash
-cabal install pandoc
-```
-
-or
-
-```bash
-cabal install pandoc --reinstall
-```
