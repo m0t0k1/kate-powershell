@@ -137,7 +137,7 @@
       <item> /= </item>
       <item> %= </item>
     </list>
-    <list name="functions">
+    <list name="cmdlets">
       <item>Add-Content</item>
       <item>Add-History</item>
       <item>Add-Member</item>
@@ -448,8 +448,8 @@
     <contexts>
       <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
         <keyword attribute="Keyword" context="#stay" String="keywords"/>
-        <keyword attribute="Function" context="#stay" String="functions"/>
         <keyword attribute="Data Type" context="#stay" String="types" />
+        <IncludeRules context="Cmdlet" />
         <DetectChar attribute="String" context="String" char="&quot;"/>
         <Detect2Chars attribute="HereString" context="HereStringer" char="@" char1="&quot;"/>
         <IncludeRules context="##Doxygen" />
@@ -457,10 +457,8 @@
         <Detect2Chars attribute="Comment" context="Commentar 2" char="&lt;" char1="#"/>
         <DetectChar attribute="Symbol" context="#stay" char="{" beginRegion="block1"/>
         <DetectChar attribute="Symbol" context="#stay" char="}" endRegion="block1"/>
-        <RegExpr attribute="Keyword" context="#stay" String="\bpartial(?=\s+(class|struct|interface|void))"/>
         <RegExpr attribute="Keyword" context="#stay" String="\b\$global(?=\s+(:))"/>
         <RegExpr attribute="Keyword" context="#stay" String="\b\$script(?=\s+(:))"/>
-        <RegExpr attribute="Function" context="#stay" String="\b[_\w][_\w\d]*(?=[\s]*[(])" />
         <RegExpr attribute="Variable" context="#stay" String="\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*" />
         <keyword attribute="Special Variable" context="#stay" String="special-variables"/>
         <RegExpr attribute="Symbol" context="Member" String="[.]{1,1}" />
@@ -480,6 +478,9 @@
       <context attribute="Comment" lineEndContext="#stay" name="Commentar 2">
         <Detect2Chars attribute="Comment" context="#pop" char="#" char1="&gt;"/>
       </context>
+      <context attribute="Cmdlets" lineEndContext="#stay" name="Cmdlet">
+        <keyword attribute="Function" context="#stay" String="cmdlets"/>
+      </context>
     </contexts>
     <itemDatas>
       <itemData name="Normal Text"  defStyleNum="dsNormal"/>
@@ -489,6 +490,7 @@
       <itemData name="String"       defStyleNum="dsString"/>
       <itemData name="HereString"       defStyleNum="dsString"/>
       <itemData name="Comment"      defStyleNum="dsComment"/>
+      <itemData name="Cmdlets"      defStyleNum="dsBuiltIn"/>
       <itemData name="Symbol"       defStyleNum="dsNormal"/>
       <itemData name="Variable" defStyleNum="dsKeyword" color="#5555FF" selColor="#ffffff" bold="0" italic="0" spellChecking="false" />
       <itemData name="Special Variable" defStyleNum="dsKeyword" color="#5555FF" selColor="#ffffff" bold="1" italic="0" spellChecking="false" />
@@ -499,6 +501,6 @@
       <comment name="singleLine" start="#" />
       <comment name="multiLine" start="&lt;#" end="#&gt;" region="Comment" />
     </comments>
-    <keywords casesensitive="0" weakDeliminator=""/>
+    <keywords casesensitive="0" weakDeliminator=":-"/>
   </general>
 </language>
